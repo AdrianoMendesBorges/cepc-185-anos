@@ -1,345 +1,719 @@
-/**
- * Portal CEPC 185 Anos - Script Principal
- * VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável
- * Curso Técnico em Informática
- */
-
-document.addEventListener("DOMContentLoaded", () => {
-  iniciarAcessibilidade();
-  iniciarMenuMobile();
-  iniciarFiltroTimeline();
-  iniciarCarrossel();
-  iniciarQuiz();
-});
-
 /* ==========================================================================
-   1. CONTROLES DE ACESSIBILIDADE (TAMANHO DA FONTE E ALTO CONTRASTE)
+   1. VARIÁVEIS CSS (PALETA INSTITUCIONAL CEPC: AZUL-MARINHO E DOURADO)
    ========================================================================== */
-function iniciarAcessibilidade() {
-  const htmlEl = document.documentElement;
-  const btnAumentar = document.getElementById("btn-aumentar-fonte");
-  const btnDiminuir = document.getElementById("btn-diminuir-fonte");
-  const btnContraste = document.getElementById("btn-contraste");
+:root {
+  --cor-azul-escuro: #061830;
+  --cor-azul-medio: #0f2c54;
+  --cor-dourado: #c5a059;
+  --cor-dourado-claro: #e2c588;
+  --cor-fundo: #ffffff;
+  --cor-fundo-alt: #f4f6f9;
+  --cor-texto: #222222;
+  --cor-texto-suave: #555e68;
+  --cor-borda: #dce2ea;
+  --cor-sucesso: #1b6e3a;
+  --cor-erro: #a61c1c;
 
-  let tamanhoFonte = 16; // Tamanho padrão em pixels
+  --fonte-principal: 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+  --raio-borda: 8px;
+  --sombra-card: 0 4px 14px rgba(6, 24, 48, 0.08);
+  --transicao: all 0.25s ease;
+}
 
-  btnAumentar.addEventListener("click", () => {
-    if (tamanhoFonte < 20) {
-      tamanhoFonte += 1;
-      htmlEl.style.fontSize = `${tamanhoFonte}px`;
-    }
-  });
-
-  btnDiminuir.addEventListener("click", () => {
-    if (tamanhoFonte > 13) {
-      tamanhoFonte -= 1;
-      htmlEl.style.fontSize = `${tamanhoFonte}px`;
-    }
-  });
-
-  btnContraste.addEventListener("click", () => {
-    const ativo = document.body.classList.toggle("alto-contraste");
-    btnContraste.setAttribute("aria-pressed", ativo);
-  });
+/* Modo de Alto Contraste (Acionado via JavaScript para Inclusão) */
+body.alto-contraste {
+  --cor-azul-escuro: #000000;
+  --cor-azul-medio: #111111;
+  --cor-dourado: #ffd700;
+  --cor-dourado-claro: #ffe44d;
+  --cor-fundo: #000000;
+  --cor-fundo-alt: #121212;
+  --cor-texto: #ffffff;
+  --cor-texto-suave: #e0e0e0;
+  --cor-borda: #ffd700;
 }
 
 /* ==========================================================================
-   2. MENU RESPONSIVO PARA DISPOSITIVOS MÓVEIS
+   2. RESET E ESTILOS BASE
    ========================================================================== */
-function iniciarMenuMobile() {
-  const btnMenu = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-principal");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  btnMenu.addEventListener("click", () => {
-    const aberto = nav.classList.toggle("aberto");
-    btnMenu.setAttribute("aria-expanded", aberto);
-  });
+html {
+  scroll-behavior: smooth;
+  font-size: 16px; /* Base alterada dinamicamente pelos botões A+ e A- */
+}
 
-  // Fecha o menu ao clicar em um link no celular
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("aberto");
-      btnMenu.setAttribute("aria-expanded", "false");
-    });
-  });
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.container-estreito {
+  max-width: 800px;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.oculto {
+  display: none !important;
 }
 
 /* ==========================================================================
-   3. FILTRO INTERATIVO DA LINHA DO TEMPO
+   3. BARRA DE ACESSIBILIDADE E CABEÇALHO
    ========================================================================== */
-function iniciarFiltroTimeline() {
-  const botoesFiltro = document.querySelectorAll(".filtro-btn");
-  const itensTimeline = document.querySelectorAll(".timeline-item");
+.barra-acessibilidade {
+  background-color: #030d1a;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+}
 
-  botoesFiltro.forEach((botao) => {
-    botao.addEventListener("click", () => {
-      // Atualiza botão ativo
-      botoesFiltro.forEach((b) => b.classList.remove("ativo"));
-      botao.classList.add("ativo");
+.controles-a11y {
+  display: flex;
+  gap: 0.4rem;
+}
 
-      const periodoSelecionado = botao.getAttribute("data-periodo");
+.controles-a11y button {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid var(--cor-dourado);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
 
-      // Mostra ou oculta os marcos históricos conforme o filtro
-      itensTimeline.forEach((item) => {
-        const periodoItem = item.getAttribute("data-periodo");
-        if (periodoSelecionado === "todos" || periodoSelecionado === periodoItem) {
-          item.classList.remove("oculto");
-        } else {
-          item.classList.add("oculto");
-        }
-      });
-    });
-  });
+.controles-a11y button:hover,
+.controles-a11y button:focus {
+  background-color: var(--cor-dourado);
+  color: #061830;
+}
+
+.cabecalho {
+  background-color: var(--cor-azul-escuro);
+  color: #ffffff;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #ffffff;
+}
+
+.logo-sigla {
+  background-color: var(--cor-dourado);
+  color: #061830;
+  font-weight: 800;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.logo-texto {
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.logo-texto small {
+  color: var(--cor-dourado-claro);
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.nav-principal ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.nav-principal a {
+  color: #f1f5f9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: var(--transicao);
+}
+
+.nav-principal a:hover {
+  color: var(--cor-dourado);
+}
+
+.btn-nav-destaque {
+  background-color: var(--cor-dourado);
+  color: #061830 !important;
+  padding: 0.45rem 0.95rem;
+  border-radius: 6px;
+  font-weight: 700 !important;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--cor-dourado);
+  color: #ffffff;
+  font-size: 1.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
 /* ==========================================================================
-   4. CARROSSEL AUTOMÁTICO (10 SEGUNDOS) E NAVEGAÇÃO MANUAL
+   4. HERO BANNER
    ========================================================================== */
-function iniciarCarrossel() {
-  const carrosselEl = document.querySelector(".carrossel");
-  const trilho = document.getElementById("carrossel-trilho");
-  const slides = document.querySelectorAll(".carrossel-slide");
-  const btnAnterior = document.getElementById("btn-carrossel-anterior");
-  const btnProximo = document.getElementById("btn-carrossel-proximo");
-  const indicadoresContainer = document.getElementById("carrossel-indicadores");
+.hero {
+  background: linear-gradient(135deg, var(--cor-azul-escuro) 0%, var(--cor-azul-medio) 100%);
+  color: #ffffff;
+  padding: 4.5rem 0;
+  border-bottom: 4px solid var(--cor-dourado);
+}
 
-  if (!trilho || slides.length === 0) return;
+.badge-dourada {
+  display: inline-block;
+  background-color: rgba(197, 160, 89, 0.18);
+  border: 1px solid var(--cor-dourado);
+  color: var(--cor-dourado-claro);
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
 
-  let slideAtual = 0;
-  const TEMPO_TROCA_MS = 10000; // 10 segundos (10.000 milissegundos)
-  let intervaloAutomatico = null;
+.hero h1 {
+  font-size: clamp(1.9rem, 4vw, 2.85rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  max-width: 820px;
+}
 
-  // Cria os botões indicadores dinamicamente conforme o número de slides
-  slides.forEach((_, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = index === 0 ? "carrossel-dot ativo" : "carrossel-dot";
-    dot.setAttribute("aria-label", `Ir para a foto ${index + 1} de ${slides.length}`);
-    dot.addEventListener("click", () => {
-      irParaSlide(index);
-      reiniciarTemporizador();
-    });
-    indicadoresContainer.appendChild(dot);
-  });
+.subtema {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  max-width: 740px;
+  margin-bottom: 2rem;
+}
 
-  const dots = indicadoresContainer.querySelectorAll(".carrossel-dot");
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
 
-  function irParaSlide(indice) {
-    if (indice < 0) {
-      slideAtual = slides.length - 1;
-    } else if (indice >= slides.length) {
-      slideAtual = 0;
-    } else {
-      slideAtual = indice;
-    }
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--raio-borda);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transicao);
+  font-size: 0.95rem;
+}
 
-    // Desloca o trilho horizontalmente via CSS transform
-    trilho.style.transform = `translateX(-${slideAtual * 100}%)`;
+.btn-primario {
+  background-color: var(--cor-dourado);
+  color: #061830;
+}
 
-    // Atualiza o indicador ativo
-    dots.forEach((dot, idx) => {
-      dot.classList.toggle("ativo", idx === slideAtual);
-    });
-  }
+.btn-primario:hover {
+  background-color: var(--cor-dourado-claro);
+}
 
-  function iniciarTemporizador() {
-    pararTemporizador();
-    intervaloAutomatico = setInterval(() => {
-      irParaSlide(slideAtual + 1);
-    }, TEMPO_TROCA_MS);
-  }
+.btn-secundario {
+  border-color: var(--cor-dourado);
+  color: #ffffff;
+  background: transparent;
+}
 
-  function pararTemporizador() {
-    if (intervaloAutomatico) {
-      clearInterval(intervaloAutomatico);
-      intervaloAutomatico = null;
-    }
-  }
+.btn-secundario:hover {
+  background-color: rgba(197, 160, 89, 0.15);
+}
 
-  function reiniciarTemporizador() {
-    iniciarTemporizador();
-  }
+.hero-indicadores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
 
-  // Botões manuais (reiniciam os 10s ao clicar para não trocar logo em seguida)
-  btnAnterior.addEventListener("click", () => {
-    irParaSlide(slideAtual - 1);
-    reiniciarTemporizador();
-  });
+.indicador strong {
+  display: block;
+  font-size: 2rem;
+  color: var(--cor-dourado);
+  line-height: 1.1;
+}
 
-  btnProximo.addEventListener("click", () => {
-    irParaSlide(slideAtual + 1);
-    reiniciarTemporizador();
-  });
-
-  // Pausa a rotação automática ao passar o mouse ou focar (acessibilidade)
-  carrosselEl.addEventListener("mouseenter", pararTemporizador);
-  carrosselEl.addEventListener("mouseleave", iniciarTemporizador);
-  carrosselEl.addEventListener("focusin", pararTemporizador);
-  carrosselEl.addEventListener("focusout", iniciarTemporizador);
-
-  // Permite navegar usando as setas esquerda/direita do teclado
-  carrosselEl.setAttribute("tabindex", "0");
-  carrosselEl.addEventListener("keydown", (evento) => {
-    if (evento.key === "ArrowLeft") {
-      irParaSlide(slideAtual - 1);
-      reiniciarTemporizador();
-    }
-    if (evento.key === "ArrowRight") {
-      irParaSlide(slideAtual + 1);
-      reiniciarTemporizador();
-    }
-  });
-
-  // Inicia o carrossel automático de 10 segundos
-  iniciarTemporizador();
+.indicador span {
+  font-size: 0.9rem;
+  color: #cbd5e1;
 }
 
 /* ==========================================================================
-   5. QUIZ HISTÓRICO INTERATIVO (5 PERGUNTAS SOBRE O CEPC)
+   5. SEÇÕES, GRIDS E CARDS
    ========================================================================== */
-function iniciarQuiz() {
-  const questoes = [
-    {
-      pergunta: "1. Em que ano e com qual nome original foi fundado o Colégio Estadual Paes de Carvalho?",
-      opcoes: [
-        "1841, como Liceu Paraense",
-        "1889, como Ginásio de Belém",
-        "1822, como Instituto Imperial do Pará",
-        "1905, como Escola Técnica Estadual"
-      ],
-      correta: 0,
-      explicacao: "O colégio foi fundado em 28 de junho de 1841 como Liceu Paraense, completando 185 anos em 2026."
-    },
-    {
-      pergunta: "2. Quem foi José Paes de Carvalho, que dá nome à instituição?",
-      opcoes: [
-        "Um arquiteto francês que projetou o Teatro da Paz",
-        "Médico, abolicionista, republicano e ex-governador do Pará",
-        "O primeiro diretor do curso de Informática em 2010",
-        "Um navegador português do século XVII"
-      ],
-      correta: 1,
-      explicacao: "Dr. José Paes de Carvalho foi médico, liderança abolicionista e governador do Pará no início da República."
-    },
-    {
-      pergunta: "3. Onde está localizado o histórico prédio neoclássico do CEPC em Belém?",
-      opcoes: [
-        "Na Praça da República",
-        "Na Praça Saldanha Marinho",
-        "Na Estação das Docas",
-        "No Complexo do Ver-o-Peso"
-      ],
-      correta: 1,
-      explicacao: "O edifício histórico do Paes de Carvalho situa-se na tradicional Praça Saldanha Marinho, no centro de Belém."
-    },
-    {
-      pergunta: "4. Qual é o subtema deste projeto web na VII Mostra de Tecnologia, Inclusão e Novos Negócios?",
-      opcoes: [
-        "Impressão Gráfica e Panfletagem Escolar",
-        "Memória Viva e Digital: Preservação do Patrimônio Histórico por meio da Tecnologia Sustentável e Inclusiva",
-        "Jogos Digitais Comerciais na Amazônia",
-        "Manutenção de Hardware Antigo"
-      ],
-      correta: 1,
-      explicacao: "O projeto une a preservação digital dos 185 anos do CEPC à inclusão e à sustentabilidade (redução de papel)."
-    },
-    {
-      pergunta: "5. Como o desenvolvimento deste portal contribui para a sustentabilidade na VII Mostra?",
-      opcoes: [
-        "Utilizando servidores que consomem muita energia",
-        "Substituindo folders e cartilhas de papel por acesso digital via QR Code e código leve",
-        "Distribuindo panfletos plásticos no estande",
-        "Exigindo computadores de última geração para abrir o site"
-      ],
-      correta: 1,
-      explicacao: "Ao substituir materiais impressos por uma página leve em HTML5, CSS3 e JS puro, evitamos resíduos e reduzimos o consumo de dados."
-    }
-  ];
+.secao {
+  padding: 4.5rem 0;
+}
 
-  let indiceAtual = 0;
-  let pontuacao = 0;
+.secao-alternativa {
+  background-color: var(--cor-fundo-alt);
+}
 
-  const progressoEl = document.getElementById("quiz-progresso");
-  const placarEl = document.getElementById("quiz-placar");
-  const perguntaEl = document.getElementById("quiz-pergunta");
-  const opcoesEl = document.getElementById("quiz-opcoes");
-  const feedbackEl = document.getElementById("quiz-feedback");
-  const btnProxima = document.getElementById("btn-proxima");
+.cabecalho-secao {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2.8rem auto;
+}
 
-  function renderizarPergunta() {
-    const q = questoes[indiceAtual];
-    progressoEl.textContent = `Pergunta ${indiceAtual + 1} de ${questoes.length}`;
-    placarEl.textContent = `Pontuação: ${pontuacao}`;
-    perguntaEl.textContent = q.pergunta;
+.etiqueta-secao {
+  display: inline-block;
+  color: var(--cor-dourado);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1.2px;
+  margin-bottom: 0.4rem;
+}
 
-    opcoesEl.innerHTML = "";
-    feedbackEl.classList.add("oculto");
-    btnProxima.classList.add("oculto");
+.secao h2 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  color: var(--cor-azul-escuro);
+  margin-bottom: 0.8rem;
+  line-height: 1.25;
+}
 
-    q.opcoes.forEach((textoOpcao, index) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "opcao-btn";
-      btn.textContent = textoOpcao;
-      btn.addEventListener("click", () => verificarResposta(index, btn));
-      opcoesEl.appendChild(btn);
-    });
+body.alto-contraste .secao h2 {
+  color: var(--cor-dourado);
+}
+
+.grid-duas-colunas {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.grid-duas-colunas p {
+  margin-bottom: 1rem;
+}
+
+.card-destaque {
+  background-color: var(--cor-fundo-alt);
+  border-left: 5px solid var(--cor-dourado);
+  padding: 1.8rem;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+}
+
+.card-destaque h3 {
+  margin-bottom: 0.8rem;
+  color: var(--cor-azul-escuro);
+}
+
+body.alto-contraste .card-destaque h3 {
+  color: var(--cor-dourado);
+}
+
+.lista-check {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.lista-check li {
+  margin-bottom: 0.6rem;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.lista-check li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--cor-dourado);
+  font-weight: bold;
+}
+
+.grid-tres-colunas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card-pilar {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-top: 4px solid var(--cor-dourado);
+  padding: 1.8rem;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+}
+
+.icone-pilar {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* ==========================================================================
+   6. LINHA DO TEMPO INTERATIVA
+   ========================================================================== */
+.filtros-timeline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+}
+
+.filtro-btn {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transicao);
+}
+
+.filtro-btn.ativo,
+.filtro-btn:hover {
+  background-color: var(--cor-azul-escuro);
+  color: #ffffff;
+  border-color: var(--cor-dourado);
+}
+
+.timeline-lista {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  border-left: 3px solid var(--cor-dourado);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -2.55rem;
+  top: 0.3rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--cor-azul-escuro);
+  border: 3px solid var(--cor-dourado);
+}
+
+.timeline-ano {
+  display: inline-block;
+  background-color: var(--cor-azul-escuro);
+  color: var(--cor-dourado);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-card {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  padding: 1.4rem;
+  border-radius: var(--raio-borda);
+  box-shadow: var(--sombra-card);
+}
+
+.timeline-card h3 {
+  margin-bottom: 0.4rem;
+  font-size: 1.15rem;
+}
+
+/* ==========================================================================
+   7. CARROSSEL DE FOTOS INTERATIVO E AUTOMÁTICO (10 SEGUNDOS)
+   ========================================================================== */
+.carrossel {
+  position: relative;
+  border-radius: var(--raio-borda);
+  overflow: hidden;
+  border: 2px solid var(--cor-borda);
+  box-shadow: var(--sombra-card);
+  background-color: var(--cor-azul-escuro);
+}
+
+.carrossel-janela {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carrossel-trilho {
+  display: flex;
+  transition: transform 0.55s ease-in-out;
+}
+
+.carrossel-slide {
+  min-width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+.carrossel-slide img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.carrossel-legenda {
+  background-color: var(--cor-azul-escuro);
+  color: #ffffff;
+  padding: 1.3rem 1.8rem;
+  border-top: 3px solid var(--cor-dourado);
+}
+
+.carrossel-legenda h3 {
+  color: var(--cor-dourado);
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.carrossel-legenda p {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  margin: 0;
+}
+
+.carrossel-btn {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background-color: rgba(6, 24, 48, 0.85);
+  color: var(--cor-dourado);
+  border: 1px solid var(--cor-dourado);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transicao);
+  z-index: 10;
+}
+
+.carrossel-btn:hover,
+.carrossel-btn:focus {
+  background-color: var(--cor-dourado);
+  color: #061830;
+}
+
+.carrossel-btn.anterior {
+  left: 1rem;
+}
+
+.carrossel-btn.proximo {
+  right: 1rem;
+}
+
+.carrossel-indicadores {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem;
+  background-color: #030d1a;
+}
+
+.carrossel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid var(--cor-dourado);
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transicao);
+}
+
+.carrossel-dot.ativo {
+  background-color: var(--cor-dourado);
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   8. QUIZ INTERATIVO
+   ========================================================================== */
+.quiz-box {
+  background-color: var(--cor-fundo-alt);
+  border: 1px solid var(--cor-borda);
+  border-top: 5px solid var(--cor-azul-escuro);
+  border-radius: var(--raio-borda);
+  padding: 2rem;
+  box-shadow: var(--sombra-card);
+}
+
+.quiz-topo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cor-texto-suave);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.quiz-pergunta {
+  font-size: 1.2rem;
+  margin-bottom: 1.4rem;
+}
+
+.quiz-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.opcao-btn {
+  text-align: left;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto);
+  padding: 0.9rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.98rem;
+  transition: var(--transicao);
+}
+
+.opcao-btn:hover:not(:disabled) {
+  border-color: var(--cor-dourado);
+  background-color: rgba(197, 160, 89, 0.1);
+}
+
+.opcao-btn.correta {
+  background-color: var(--cor-sucesso);
+  color: #ffffff;
+  border-color: var(--cor-sucesso);
+}
+
+.opcao-btn.incorreta {
+  background-color: var(--cor-erro);
+  color: #ffffff;
+  border-color: var(--cor-erro);
+}
+
+.quiz-feedback {
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: var(--cor-fundo);
+  border-left: 4px solid var(--cor-dourado);
+  font-size: 0.95rem;
+}
+
+.quiz-rodape {
+  margin-top: 1.4rem;
+  text-align: right;
+}
+
+/* ==========================================================================
+   9. RODAPÉ E RESPONSIVIDADE (MOBILE)
+   ========================================================================== */
+.rodape {
+  background-color: var(--cor-azul-escuro);
+  color: #cbd5e1;
+  padding: 2.5rem 0;
+  border-top: 4px solid var(--cor-dourado);
+  font-size: 0.9rem;
+}
+
+.rodape strong {
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.rodape-direita {
+  text-align: right;
+}
+
+@media (max-width: 820px) {
+  .grid-duas-colunas {
+    grid-template-columns: 1fr;
   }
 
-  function verificarResposta(indiceEscolhido, botaoClicado) {
-    const q = questoes[indiceAtual];
-    const todosBotoes = opcoesEl.querySelectorAll(".opcao-btn");
-
-    // Desabilita todos os botões após a escolha
-    todosBotoes.forEach((b, idx) => {
-      b.disabled = true;
-      if (idx === q.correta) {
-        b.classList.add("correta");
-      }
-    });
-
-    if (indiceEscolhido === q.correta) {
-      pontuacao++;
-      placarEl.textContent = `Pontuação: ${pontuacao}`;
-      feedbackEl.innerHTML = `<strong>Correto!</strong> ${q.explicacao}`;
-    } else {
-      botaoClicado.classList.add("incorreta");
-      feedbackEl.innerHTML = `<strong>Não foi dessa vez.</strong> ${q.explicacao}`;
-    }
-
-    feedbackEl.classList.remove("oculto");
-    btnProxima.textContent = indiceAtual < questoes.length - 1 ? "Próxima Pergunta" : "Ver Resultado Final";
-    btnProxima.classList.remove("oculto");
+  .menu-toggle {
+    display: block;
   }
 
-  function mostrarResultadoFinal() {
-    progressoEl.textContent = "Quiz Concluído!";
-    perguntaEl.textContent = `Você acertou ${pontuacao} de ${questoes.length} perguntas sobre os 185 anos do CEPC!`;
-    opcoesEl.innerHTML = "";
-    feedbackEl.innerHTML =
-      pontuacao >= 4
-        ? "Parabéns! Você domina a história do Colégio Estadual Paes de Carvalho e os pilares da VII Mostra."
-        : "Muito bem! Explore a Linha do Tempo acima e tente novamente para gabaritar o desafio.";
-    feedbackEl.classList.remove("oculto");
-
-    btnProxima.textContent = "Reiniciar Quiz";
-    btnProxima.onclick = () => {
-      indiceAtual = 0;
-      pontuacao = 0;
-      btnProxima.onclick = avancar;
-      renderizarPergunta();
-    };
+  .nav-principal {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--cor-azul-escuro);
+    padding: 1rem 5%;
+    border-top: 1px solid rgba(197, 160, 89, 0.3);
   }
 
-  function avancar() {
-    indiceAtual++;
-    if (indiceAtual < questoes.length) {
-      renderizarPergunta();
-    } else {
-      mostrarResultadoFinal();
-    }
+  .nav-principal.aberto {
+    display: block;
   }
 
-  btnProxima.onclick = avancar;
-  renderizarPergunta();
+  .nav-principal ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+  }
+
+  .rodape-conteudo {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .rodape-direita {
+    text-align: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .carrossel-slide img {
+    height: 240px;
+  }
 }
