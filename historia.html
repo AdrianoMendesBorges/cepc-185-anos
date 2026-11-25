@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="História detalhada de personalidades, governadores e marcos dos 185 anos do Colégio Estadual Paes de Carvalho.">
+  <title>História Detalhada | CEPC 185 Anos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="barra-acessibilidade" role="region" aria-label="Ferramentas de acessibilidade">
+    <div class="container flex-between">
+      <span>VII Mostra de Tecnologia, Inclusão e Novos Negócios • CEPC / EETEPA</span>
+      <div class="controles-a11y">
+        <button type="button" id="btn-diminuir-fonte" aria-label="Diminuir tamanho da fonte">A-</button>
+        <button type="button" id="btn-aumentar-fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+        <button type="button" id="btn-contraste" aria-pressed="false">Alto Contraste</button>
+      </div>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="container flex-between cabecalho-inner">
+      <a href="index.html" class="logo" aria-label="CEPC, voltar ao início">
+        <span class="logo-sigla">CEPC</span>
+        <span class="logo-texto">185 Anos <small>1841 – 2026</small></span>
+      </a>
+      <button type="button" class="menu-toggle" id="menu-toggle"
+        aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menu de navegação">☰</button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Menu principal">
+        <ul>
+          <li><a href="index.html#historia">Nossa História</a></li>
+          <li><a href="index.html#linha-do-tempo">Linha do Tempo</a></li>
+          <li><a href="index.html#galeria">Galeria</a></li>
+          <li><a href="index.html#personalidades">Personalidades</a></li>
+          <li><a href="index.html#governadores">Governadores</a></li>
+          <li><a href="index.html#quiz" class="btn-nav-destaque">Quiz Histórico</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="pagina-historia-hero">
+      <div class="container">
+        <span class="badge-dourada" id="historia-categoria">Memória &amp; Legado do CEPC</span>
+        <h1 id="historia-titulo">Carregando história...</h1>
+        <p class="subtitulo-historia" id="historia-subtitulo"></p>
+      </div>
+    </section>
+
+    <section class="secao secao-alternativa">
+      <div class="container container-estreito">
+        <div class="historia-grid">
+          <article class="historia-artigo">
+            <h2>Trajetória e Memória</h2>
+            <div id="historia-paragrafos"></div>
+            <div class="historia-acoes-rodape">
+              <a href="index.html#personalidades" class="btn btn-primario">Ver Personalidades</a>
+              <a href="index.html#governadores" class="btn btn-secundario" style="color: var(--azul); border-color: var(--azul);">Ver Governadores</a>
+              <a href="index.html" class="btn btn-secundario" style="color: var(--azul); border-color: var(--azul-3);">Voltar ao Portal</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container flex-between rodape-conteudo">
+      <div><strong>Colégio Estadual Paes de Carvalho (CEPC / EETEPA)</strong><p>185 Anos de História • Belém - Pará</p></div>
+      <div class="rodape-direita"><p>VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável</p><p><small>Desenvolvido pela Turma do Curso Técnico em Informática • 2026</small></p></div>
+    </div>
+  </footer>
+  <script src="historia.js"></script>
+</body>
+</html>

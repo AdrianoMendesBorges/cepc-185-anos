@@ -3,15 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal comemorativo dos 185 anos do Colégio Estadual Paes de Carvalho (CEPC / EETEPA) - VII Mostra de Tecnologia, Inclusão e Novos Negócios.">
+  <meta name="description" content="Portal comemorativo dos 185 anos do Colégio Estadual Paes de Carvalho.">
   <title>CEPC 185 Anos | Memória Viva e Digital</title>
-  <!-- Vinculando o arquivo CSS externo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="script.js">
 </head>
 <body>
-
-  <!-- Barra de Acessibilidade (Pilar Inclusão da VII Mostra) -->
   <div class="barra-acessibilidade" role="region" aria-label="Ferramentas de acessibilidade">
     <div class="container flex-between">
       <span>VII Mostra de Tecnologia, Inclusão e Novos Negócios • CEPC / EETEPA</span>
@@ -23,24 +22,22 @@
     </div>
   </div>
 
-  <!-- Cabeçalho e Navegação Principal -->
   <header class="cabecalho">
-    <div class="container flex-between">
-      <a href="#inicio" class="logo">
+    <div class="container flex-between cabecalho-inner">
+      <a href="#inicio" class="logo" aria-label="CEPC, início">
         <span class="logo-sigla">CEPC</span>
         <span class="logo-texto">185 Anos <small>1841 – 2026</small></span>
       </a>
-
-      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menu de navegação">
-        ☰
-      </button>
-
+      <button type="button" class="menu-toggle" id="menu-toggle"
+        aria-expanded="false" aria-controls="nav-principal" aria-label="Abrir menu de navegação">☰</button>
       <nav id="nav-principal" class="nav-principal" aria-label="Menu principal">
         <ul>
           <li><a href="#historia">Nossa História</a></li>
           <li><a href="#linha-do-tempo">Linha do Tempo</a></li>
-          <li><a href="#pilares-mostra">Sustentabilidade & Inclusão</a></li>
+          <li><a href="#pilares-mostra">Sustentabilidade &amp; Inclusão</a></li>
           <li><a href="#galeria">Galeria</a></li>
+          <li><a href="#personalidades">Personalidades</a></li>
+          <li><a href="#governadores">Governadores</a></li>
           <li><a href="#quiz" class="btn-nav-destaque">Quiz Histórico</a></li>
         </ul>
       </nav>
@@ -48,291 +45,344 @@
   </header>
 
   <main id="inicio">
-    <!-- Hero Banner -->
     <section class="hero">
       <div class="container hero-conteudo">
-          j
         <span class="badge-dourada">28 de Junho de 1841 – 2026 • Belém - Pará</span>
         <h1>Memória Viva e Digital: 185 Anos do Colégio Estadual Paes de Carvalho</h1>
-        <p class="subtema">
-          Preservação do patrimônio histórico do CEPC por meio da Tecnologia Sustentável e Inclusiva —
-          um projeto desenvolvido pela turma do <strong>Curso Técnico em Informática</strong>.
-        </p>
-
+        <p class="subtema">Preservação do patrimônio histórico do CEPC por meio da Tecnologia Sustentável e Inclusiva — um projeto desenvolvido pela turma do <strong>Curso Técnico em Informática</strong>.</p>
         <div class="hero-acoes">
           <a href="#linha-do-tempo" class="btn btn-primario">Explorar Linha do Tempo</a>
           <a href="#quiz" class="btn btn-secundario">Testar Conhecimentos no Quiz</a>
         </div>
-
         <div class="hero-indicadores" aria-label="Indicadores históricos da instituição">
-          <div class="indicador">
-            <strong>185</strong>
-            <span>Anos de história ininterrupta</span>
-          </div>
-          <div class="indicador">
-            <strong>1841</strong>
-            <span>Fundado como Liceu Paraense</span>
-          </div>
-          <div class="indicador">
-            <strong>100%</strong>
-            <span>Digital e livre de papel na Mostra</span>
-          </div>
+          <div class="indicador"><strong>185</strong><span>Anos de história</span></div>
+          <div class="indicador"><strong>1841</strong><span>Fundado como Liceu Paraense</span></div>
+          <div class="indicador"><strong>100%</strong><span>Digital e livre de papel na Mostra</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Seção 1: Nossa História e Arquitetura -->
     <section id="historia" class="secao">
       <div class="container grid-duas-colunas">
         <div>
           <span class="etiqueta-secao">Patrimônio Histórico e Educacional</span>
           <h2>De Liceu Paraense a Referência na Educação Pública da Amazônia</h2>
-          <p>
-            Fundado em <strong>28 de junho de 1841</strong> originalmente como <em>Liceu Paraense</em>, o Colégio Estadual Paes de Carvalho (CEPC) consolidou-se como uma das instituições públicas de ensino mais antigas e relevantes em atividade no Brasil.
-          </p>
-          <p>
-            No final do século XIX, recebeu o nome de <strong>Dr. José Paes de Carvalho</strong>, médico, abolicionista, republicano e ex-governador do Pará. Seu imponente edifício de estilo neoclássico, situado na Praça Saldanha Marinho, no centro histórico de Belém, é palco da formação de gerações de cientistas, escritores, artistas e profissionais técnicos.
-          </p>
+          <p>Fundado em <strong>1841</strong>, originalmente como <em>Liceu Paraense</em>, o Colégio Estadual Paes de Carvalho (CEPC) consolidou-se como uma das instituições públicas de ensino mais antigas e relevantes em atividade no Brasil.</p>
+          <p>No final do século XIX e início do século XX, a instituição passou por mudanças de nome e organização. Seu edifício histórico, situado na região central de Belém, integra a memória arquitetônica e educacional paraense.</p>
         </div>
-
         <aside class="card-destaque" aria-label="Curiosidade histórica">
           <h3>Por que este portal faz parte da VII Mostra?</h3>
-          <p>
-            Na <strong>VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável</strong>, substituímos folders e cartilhas impressas por esta plataforma web leve e acessível.
-          </p>
+          <p>Na <strong>VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável</strong>, substituímos folders e cartilhas impressas por esta plataforma web leve e acessível.</p>
           <ul class="lista-check">
-            <li><strong>Zero desperdício de papel:</strong> acesso imediato via QR Code no estande.</li>
-            <li><strong>Código limpo (Green IT):</strong> desenvolvido em HTML5, CSS3 e JS puro, consumindo o mínimo de dados móveis e energia.</li>
+            <li><strong>Menos papel:</strong> acesso imediato via QR Code no estande.</li>
+            <li><strong>Código leve:</strong> desenvolvido em HTML, CSS e JavaScript.</li>
             <li><strong>Inclusão digital:</strong> suporte a leitores de tela, contraste ajustável e layout responsivo.</li>
           </ul>
         </aside>
       </div>
     </section>
 
-    <!-- Seção 2: Linha do Tempo Interativa -->
     <section id="linha-do-tempo" class="secao secao-alternativa">
       <div class="container">
         <div class="cabecalho-secao">
           <span class="etiqueta-secao">Cronologia (1841 – 2026)</span>
           <h2>Linha do Tempo Interativa</h2>
-          <p>Filtre os marcos históricos para acompanhar a trajetória quase bicentenária do colégio.</p>
+          <p>Filtre os marcos históricos para acompanhar a trajetória do colégio.</p>
         </div>
-
-        <!-- Botões de Filtro controlados pelo script.js -->
         <div class="filtros-timeline" role="group" aria-label="Filtrar marcos históricos por período">
           <button type="button" class="filtro-btn ativo" data-periodo="todos">Todos os Marcos</button>
-          <button type="button" class="filtro-btn" data-periodo="sec19">Século XIX (1841–1899)</button>
+          <button type="button" class="filtro-btn" data-periodo="sec19">Século XIX</button>
           <button type="button" class="filtro-btn" data-periodo="sec20">Século XX</button>
-          <button type="button" class="filtro-btn" data-periodo="sec21">Século XXI & 185 Anos</button>
+          <button type="button" class="filtro-btn" data-periodo="sec21">Século XXI</button>
         </div>
-
         <div class="timeline-lista" id="timeline-container">
-          <article class="timeline-item" data-periodo="sec19">
-            <span class="timeline-ano">1841</span>
-            <div class="timeline-card">
-              <h3>Fundação do Liceu Paraense</h3>
-              <p>Em 28 de junho de 1841, nasce a instituição com a missão de estruturar o ensino secundário e humanístico na Província do Grão-Pará.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" data-periodo="sec19">
-            <span class="timeline-ano">1889 – 1899</span>
-            <div class="timeline-card">
-              <h3>Era Republicana e Homenagem a Paes de Carvalho</h3>
-              <p>Após a Proclamação da República, o colégio passa a homenagear José Paes de Carvalho, figura central na política, saúde e abolição no estado.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" data-periodo="sec20">
-            <span class="timeline-ano">Século XX</span>
-            <div class="timeline-card">
-              <h3>Consolidação Arquitetônica e Cultural</h3>
-              <p>O prédio neoclássico na Praça Saldanha Marinho torna-se referência intelectual de Belém, formando grandes nomes da literatura, medicina, direito e artes.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" data-periodo="sec21">
-            <span class="timeline-ano">Século XXI</span>
-            <div class="timeline-card">
-              <h3>Ensino Técnico Integrado e Inovação (EETEPA / CEPC)</h3>
-              <p>A escola incorpora a educação profissional e tecnológica, preparando jovens para áreas estratégicas como Informática, Redes e Desenvolvimento de Sistemas.</p>
-            </div>
-          </article>
-
-          <article class="timeline-item" data-periodo="sec21">
-            <span class="timeline-ano">2026</span>
-            <div class="timeline-card">
-              <h3>185 Anos e VII Mostra de Tecnologia e Sustentabilidade</h3>
-              <p>Celebração do sesquicentenário mais 35 anos unindo preservação histórica, inclusão digital e soluções sustentáveis criadas pelos próprios estudantes.</p>
-            </div>
-          </article>
+          <article class="timeline-item" data-periodo="sec19"><span class="timeline-ano">1841</span><div class="timeline-card"><h3>Fundação do Liceu Paraense</h3><p>Nasce a instituição com a missão de estruturar o ensino secundário e humanístico na Província do Grão-Pará.</p></div></article>
+          <article class="timeline-item" data-periodo="sec19"><span class="timeline-ano">Século XIX</span><div class="timeline-card"><h3>Consolidação do ensino</h3><p>O estabelecimento passa por reorganizações e mudanças de sede ao longo do período imperial.</p></div></article>
+          <article class="timeline-item" data-periodo="sec20"><span class="timeline-ano">1901</span><div class="timeline-card"><h3>Ginásio Paes de Carvalho</h3><p>A instituição recebe o nome em homenagem ao médico e ex-governador José Paes de Carvalho.</p></div></article>
+          <article class="timeline-item" data-periodo="sec20"><span class="timeline-ano">1942</span><div class="timeline-card"><h3>Colégio Estadual Paes de Carvalho</h3><p>A denominação Colégio Estadual Paes de Carvalho passa a identificar a instituição.</p></div></article>
+          <article class="timeline-item" data-periodo="sec21"><span class="timeline-ano">Século XXI</span><div class="timeline-card"><h3>Educação e inovação</h3><p>A escola segue sua trajetória educacional e participa de iniciativas ligadas à tecnologia e à formação dos estudantes.</p></div></article>
+          <article class="timeline-item" data-periodo="sec21"><span class="timeline-ano">2026</span><div class="timeline-card"><h3>185 anos e VII Mostra</h3><p>Uma celebração que reúne preservação da memória, inclusão digital e sustentabilidade.</p></div></article>
         </div>
       </div>
     </section>
 
-    <!-- Seção 3: Pilares da VII Mostra -->
     <section id="pilares-mostra" class="secao">
       <div class="container">
-        <div class="cabecalho-secao">
-          <span class="etiqueta-secao">VII Mostra de Tecnologia, Inclusão e Novos Negócios</span>
-          <h2>Os Três Pilares do Nosso Projeto</h2>
-        </div>
-
+        <div class="cabecalho-secao"><span class="etiqueta-secao">VII Mostra de Tecnologia, Inclusão e Novos Negócios</span><h2>Os Três Pilares do Nosso Projeto</h2></div>
         <div class="grid-tres-colunas">
-          <article class="card-pilar">
-            <div class="icone-pilar" aria-hidden="true">💻</div>
-            <h3>Tecnologia Limpa</h3>
-            <p>Desenvolvimento Front-End nativo (HTML5, CSS3 e JavaScript puro) sem bibliotecas pesadas, garantindo carregamento rápido e baixo consumo energético.</p>
-          </article>
-
-          <article class="card-pilar">
-            <div class="icone-pilar" aria-hidden="true">♿</div>
-            <h3>Inclusão Digital</h3>
-            <p>Estrutura semântica compatível com leitores de tela, controle dinâmico de fonte, modo de alto contraste e design 100% responsivo (Mobile-First).</p>
-          </article>
-
-          <article class="card-pilar">
-            <div class="icone-pilar" aria-hidden="true">🌱</div>
-            <h3>Sustentabilidade</h3>
-            <p>Substituição de materiais gráficos impressos por divulgação digital contínua via QR Code, preservando a memória escolar sem gerar resíduos.</p>
-          </article>
+          <article class="card-pilar"><div class="icone-pilar" aria-hidden="true">💻</div><h3>Tecnologia Limpa</h3><p>Desenvolvimento Front-End com HTML, CSS e JavaScript, buscando carregamento rápido e baixo consumo de dados.</p></article>
+          <article class="card-pilar"><div class="icone-pilar" aria-hidden="true">♿</div><h3>Inclusão Digital</h3><p>Estrutura semântica, controle de fonte, modo de alto contraste e design responsivo.</p></article>
+          <article class="card-pilar"><div class="icone-pilar" aria-hidden="true">🌱</div><h3>Sustentabilidade</h3><p>Divulgação digital via QR Code como alternativa a materiais impressos.</p></article>
         </div>
       </div>
     </section>
 
-    <!-- Seção 4: Carrossel de Fotos Históricas e Legado -->
     <section id="galeria" class="secao secao-alternativa">
       <div class="container container-estreito">
         <div class="cabecalho-secao">
-          <span class="etiqueta-secao">Memória Visual & Identidade</span>
+          <span class="etiqueta-secao">Memória Visual &amp; Identidade</span>
           <h2>Galeria Histórica: 185 Anos em Imagens</h2>
-          <p>As imagens alternam automaticamente a cada 10 segundos ou podem ser navegadas manualmente.</p>
+          <p></p>
         </div>
 
         <div class="carrossel" role="region" aria-roledescription="carrossel" aria-label="Galeria de fotos dos 185 anos do CEPC">
           <div class="carrossel-janela">
             <div class="carrossel-trilho" id="carrossel-trilho">
-              
-              <!-- Slide 1 -->
               <figure class="carrossel-slide">
-                <img src = "img/11.jpeg"
-                     alt="Fachada histórica em estilo neoclássico do Colégio Estadual Paes de Carvalho na Praça Saldanha Marinho, em Belém do Pará">
+                <a href="historia.html?slug=patrimonio-arquitetonico" class="carrossel-link-imagem" aria-label="Ler história sobre Patrimônio Arquitetônico">
+                  <img src="img/Paes.jpeg" alt="Fachada histórica do Colégio Estadual Paes de Carvalho — Patrimônio Arquitetônico" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
-                  <h3>Patrimônio Arquitetônico Neoclássico</h3>
-                  <p>Localizado na Praça Saldanha Marinho, o edifício histórico é um símbolo da arquitetura e da educação pública paraense.</p>
+                  <h3>Patrimônio Arquitetônico</h3>
+                  <p>O edifício histórico é um símbolo da arquitetura e da educação pública paraense.</p>
+                  <a href="historia.html?slug=patrimonio-arquitetonico" class="link-historia-slide">Ler sobre Patrimônio Arquitetônico →</a>
                 </figcaption>
               </figure>
-
-              <!-- Slide 2 -->
               <figure class="carrossel-slide">
-                <img src="img/2.jpg"
-                     alt="Registros documentais e acervo histórico da fundação do Liceu Paraense em 28 de junho de 1841">
+                <a href="historia.html?slug=liceu-paraense-atualidade" class="carrossel-link-imagem" aria-label="Ler história sobre Do Liceu Paraense (1841) à Atualidade">
+                  <img src="img/Licel.jpg" alt="Registros documentais e acervo histórico do Liceu Paraense" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
                   <h3>Do Liceu Paraense (1841) à Atualidade</h3>
-                  <p>Quase dois séculos formando intelectuais, cientistas, escritores e lideranças que marcaram a história da Amazônia.</p>
+                  <p>Uma trajetória marcada pela formação de gerações de paraenses.</p>
+                  <a href="historia.html?slug=liceu-paraense-atualidade" class="link-historia-slide">Ler sobre o Liceu Paraense →</a>
                 </figcaption>
               </figure>
-
-              <!-- Slide 3 -->
               <figure class="carrossel-slide">
-                <img src="img/3.jpg"
-                     alt="Estudantes do Curso Técnico em Informática desenvolvendo projetos web em laboratório">
+                <a href="historia.html?slug=educacao-profissional-tecnologica" class="carrossel-link-imagem" aria-label="Ler história sobre Educação Profissional e Tecnológica">
+                  <img src="img/Aula.jpg" alt="Estudantes desenvolvendo projetos em laboratório" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
                   <h3>Educação Profissional e Tecnológica</h3>
-                  <p>O ensino integrado prepara os jovens para o desenvolvimento de software, redes e soluções digitais de impacto social.</p>
+                  <p>Estudantes desenvolvem conhecimentos e soluções digitais.</p>
+                  <a href="historia.html?slug=educacao-profissional-tecnologica" class="link-historia-slide">Ler sobre Educação Tecnológica →</a>
                 </figcaption>
               </figure>
-
-              <!-- Slide 4 -->
               <figure class="carrossel-slide">
-                <img src="04.jpg"
-                     alt="Apresentação de projetos tecnológicos sustentáveis na VII Mostra do Colégio Paes de Carvalho">
+                <a href="historia.html?slug=protagonismo-vii-mostra" class="carrossel-link-imagem" aria-label="Ler história sobre Protagonismo na VII Mostra (2026)">
+                  <img src="img/Turma.jpg" alt="Projetos tecnológicos sustentáveis dos estudantes na VII Mostra" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
                   <h3>Protagonismo na VII Mostra (2026)</h3>
-                  <p>Tecnologia, inclusão e sustentabilidade aplicadas pelos estudantes para celebrar os 185 anos da instituição.</p>
+                  <p>Tecnologia, inclusão e sustentabilidade aplicadas pelos estudantes.</p>
+                  <a href="historia.html?slug=protagonismo-vii-mostra" class="link-historia-slide">Ler sobre a VII Mostra (2026) →</a>
                 </figcaption>
               </figure>
-              
-              <!-- Slide 5-->
               <figure class="carrossel-slide">
-                <img src="img/4.png"
-                     alt="uniforme da escola estadual paes de cavalho">
+                <a href="historia.html?slug=uniforme-paes-de-carvalho" class="carrossel-link-imagem" aria-label="Ler história sobre O Uniforme Paes de Carvalho">
+                  <img src="img/Uniforme.png" alt="Uniforme do Colégio Estadual Paes de Carvalho" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
-                  <h3>O uniforme paes de cavalho</h3>
-                  <p>é muito mais do que uma roupa escolar. Ele se tornou um símbolo de tradição, disciplina, identidade e pertencimento, atravessando gerações de estudantes em Belém..</p>
+                  <h3>O Uniforme Paes de Carvalho</h3>
+                  <p>Mais do que uma roupa escolar, representa tradição, identidade e pertencimento.</p>
+                  <a href="historia.html?slug=uniforme-paes-de-carvalho" class="link-historia-slide">Ler sobre o Uniforme CEPC →</a>
                 </figcaption>
               </figure>
-             <!-- Slide 6-->
               <figure class="carrossel-slide">
-                <img src="img/5.jpg"
-                     alt="uniforme da escola estadual paes de cavalh">
+                <a href="historia.html?slug=banda-marcial-fanpac" class="carrossel-link-imagem" aria-label="Ler história sobre A Banda Marcial — FANPAC">
+                  <img src="img/banda1.png" alt="Banda Marcial do Colégio Estadual Paes de Carvalho — FANPAC" loading="lazy">
+                </a>
                 <figcaption class="carrossel-legenda">
-                  <h3> A Banda Marcial do Colégio Estadual Paes de Carvalho — FANPAC</h3>
-                  <p>A banda é uma parte muito importante da identidade do colégio. Sua história está ligada aos desfiles cívicos, à Semana da Pátria, ao Dia da Raça e às competições entre bandas escolares. </p>
+                  <h3>A Banda Marcial — FANPAC</h3>
+                  <p>A banda integra a identidade do colégio e participa de desfiles cívicos e apresentações escolares.</p>
+                  <a href="historia.html?slug=banda-marcial-fanpac" class="link-historia-slide">Ler sobre a Banda Marcial FANPAC →</a>
                 </figcaption>
               </figure>
             </div>
           </div>
+          <button type="button" class="carrossel-btn anterior" id="btn-carrossel-anterior" aria-label="Foto anterior">❮</button>
+          <button type="button" class="carrossel-btn proximo" id="btn-carrossel-proximo" aria-label="Próxima foto">❯</button>
+          <div class="carrossel-indicadores" id="carrossel-indicadores" aria-label="Selecionar slide"></div>
+        </div>
+        <p class="aviso-imagens"> <code></code>.</p>
+      </div>
+    </section>
 
-          <!-- Botões de Navegação -->
-          <button type="button" class="carrossel-btn anterior" id="btn-carrossel-anterior" aria-label="Foto anterior">&#10094;</button>
-          <button type="button" class="carrossel-btn proximo" id="btn-carrossel-proximo" aria-label="Próxima foto">&#10095;</button>
+    <section id="personalidades" class="secao">
+      <div class="container container-estreito">
+        <div class="cabecalho-secao">
+          <span class="etiqueta-secao">Legado Cepeceano</span>
+          <h2>Personalidades que passaram pelo CEPC</h2>
+          <p></p>
+        </div>
 
-          <!-- Indicadores (Bolinhas) gerados via JavaScript -->
-          <div class="carrossel-indicadores" id="carrossel-indicadores" role="tablist" aria-label="Selecionar slide"></div>
+        <div class="carrossel-personalidades" id="carrossel-personalidades" role="region" aria-roledescription="carrossel" aria-label="Carrossel interativo de personalidades do CEPC" tabindex="0">
+          <div class="carrossel-pers-janela">
+            <div class="carrossel-pers-trilho" id="carrossel-pers-trilho">
+              <article class="slide-personalidade" data-slug="gaspar-viana">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Gaspa.jpg" alt="Foto de Gaspar Viana" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">GV</span>
+                </div>
+                <h3>Gaspar Viana</h3>
+                <p>Médico e cientista paraense reconhecido nacionalmente pela contribuição à medicina tropical e à pesquisa científica, incluindo avanços no tratamento da leishmaniose.</p>
+                <a href="historia.html?slug=gaspar-viana" class="link-historia-destaque">Ler história detalhada de Gaspar Viana →</a>
+              </article>
+
+              <article class="slide-personalidade" data-slug="eneas-carneiro">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Ene.jpg" alt="Foto de Enéas Carneiro" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">EC</span>
+                </div>
+                <h3>Enéas Carneiro</h3>
+                <p>Médico cardiologista, professor, escritor e figura marcante da política brasileira, conhecido por sua atuação na educação, na saúde e nos debates públicos nacionais.</p>
+                <a href="historia.html?slug=eneas-carneiro" class="link-historia-destaque">Ler história detalhada de Enéas Carneiro →</a>
+              </article>
+
+              <article class="slide-personalidade" data-slug="antonyo-juracy">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Conhe.jpg" alt="Foto de Antonyo Juracy" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">AJ</span>
+                </div>
+                <h3>Antonyo Juracy</h3>
+                <p>Nome ligado à memória cultural e histórica local, representado neste espaço para valorizar trajetórias e referências da identidade regional.</p>
+                <a href="historia.html?slug=antonyo-juracy" class="link-historia-destaque">Ler história detalhada de Antonyo Juracy →</a>
+              </article>
+
+              <article class="slide-personalidade" data-slug="lucio-flavio-pinto">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Jorna.jpg" alt="Foto de Lúcio Flávio Pinto" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">LFP</span>
+                </div>
+                <h3>Lúcio Flávio Pinto</h3>
+                <p>Jornalista, escritor e pesquisador paraense de referência no jornalismo investigativo e na análise crítica sobre a Amazônia, meio ambiente e política regional.</p>
+                <a href="historia.html?slug=lucio-flavio-pinto" class="link-historia-destaque">Ler história detalhada de Lúcio Flávio Pinto →</a>
+              </article>
+
+              <article class="slide-personalidade" data-slug="bettina-ferro">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Be.jpg" alt="Foto de Bettina Ferro" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">BF</span>
+                </div>
+                <h3>Bettina Ferro</h3>
+                <p>Referência na educação e na formação acadêmica e cidadã no Pará, com trajetória associada ao ensino, à cultura e ao compromisso com a sociedade.</p>
+                <a href="historia.html?slug=bettina-ferro" class="link-historia-destaque">Ler história detalhada de Bettina Ferro →</a>
+              </article>
+
+              <article class="slide-personalidade" data-slug="dalcidio-jurandir">
+                <span class="destaque-selo">Legado &amp; Memória do CEPC</span>
+                <div class="pers-moldura-imagem">
+                  <img src="img/Dacil (1).jpg" alt="Foto de Dalcídio Jurandir" class="pers-foto" onload="this.hidden=false;this.nextElementSibling.hidden=true;" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+                  <span class="pers-iniciais-fallback">DJ</span>
+                </div>
+                <h3>Dalcídio Jurandir</h3>
+                <p>Um dos maiores escritores da literatura amazônica e brasileira, autor do ciclo do 'Extremo Norte', retratando com sensibilidade o cotidiano, a memória e a cultura do Pará.</p>
+                <a href="historia.html?slug=dalcidio-jurandir" class="link-historia-destaque">Ler história detalhada de Dalcídio Jurandir →</a>
+              </article>
+            </div>
+          </div>
+
+          <button type="button" id="btn-personalidade-anterior" class="carrossel-pers-btn anterior" aria-label="Personalidade anterior">❮</button>
+          <button type="button" id="btn-personalidade-proximo" class="carrossel-pers-btn proximo" aria-label="Próxima personalidade">❯</button>
+
+          <div class="destaque-controles">
+            <div id="personalidade-indicadores" class="destaque-pontos" aria-label="Selecionar personalidade"></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Seção 5: Quiz Histórico Interativo -->
-    <section id="quiz" class="secao">
-      <div class="container container-estreito">
+    <section id="governadores" class="secao secao-alternativa">
+      <div class="container">
         <div class="cabecalho-secao">
-          <span class="etiqueta-secao">Atividade Interativa da Mostra</span>
-          <h2>Quiz: Quanto você sabe sobre os 185 anos do CEPC?</h2>
-          <p>Responda às 5 perguntas e teste seus conhecimentos sobre a história do colégio.</p>
+          <span class="etiqueta-secao">História Política do Pará</span>
+          <h2>Governadores que estudaram no Paes de Carvalho</h2>
+          <p>Clique na imagem ou no link de cada governador para ler sua história detalhada.</p>
         </div>
 
+        <div class="grid-governadores">
+          <article class="card-governador">
+            <a href="historia.html?slug=antonino-castro" aria-label="Ver história detalhada de Antonino Emiliano de Sousa Castro">
+              <img src="img/antonio1.png" alt="Foto de Antonino Emiliano de Sousa Castro" class="foto-governador">
+            </a>
+            <span class="periodo-badge">1921–1925</span>
+            <h3>Antonino Emiliano de Sousa Castro</h3>
+            <p>Ex-aluno do ginásio e governador do Pará de 1921 a 1925.</p>
+            <a href="historia.html?slug=antonino-castro" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+
+          <article class="card-governador">
+            <a href="historia.html?slug=dionisio-bentes" aria-label="Ver história detalhada de Dionísio Bentes">
+              <img src="img/Dionicio.png" alt="Foto de Dionísio Bentes" class="foto-governador">
+            </a>
+            <span class="periodo-badge">1925–1929</span>
+            <h3>Dionísio Bentes</h3>
+            <p>Ex-aluno do ginásio e governador do Pará de 1925 a 1929.</p>
+            <a href="historia.html?slug=dionisio-bentes" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+
+          <article class="card-governador">
+            <a href="historia.html?slug=eurico-vale" aria-label="Ver história detalhada de Eurico Vale">
+              <img src="img/Eurico.jpg" alt="Foto de Eurico Vale" class="foto-governador">
+            </a>
+            <span class="periodo-badge">1929–1930</span>
+            <h3>Eurico Vale</h3>
+            <p>Ex-aluno do ginásio e governador do Pará entre 1929 e 1930.</p>
+            <a href="historia.html?slug=eurico-vale" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+
+          <article class="card-governador">
+            <a href="historia.html?slug=alacid-nunes" aria-label="Ver história detalhada de Alacid Nunes">
+              <img src="img/Alcide.jpg" alt="Foto de Alacid Nunes" class="foto-governador">
+            </a>
+            <span class="periodo-badge">1966–1971 e 1979–1983</span>
+            <h3>Alacid Nunes</h3>
+            <p>Ex-aluno do Paes de Carvalho e governador do Pará em dois períodos.</p>
+            <a href="historia.html?slug=alacid-nunes" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+
+          <article class="card-governador">
+            <a href="historia.html?slug=jader-barbalho" aria-label="Ver história detalhada de Jader Barbalho">
+              <img src="img/barbalho1.png" alt="Foto de Jader Barbalho" class="foto-governador">
+            </a>
+            <span class="periodo-badge">1983–1987 e 1991–1994</span>
+            <h3>Jader Barbalho</h3>
+            <p>Ex-aluno do CEPC. Relatou que deu início à sua trajetória política na escola.</p>
+            <a href="historia.html?slug=jader-barbalho" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+
+          <article class="card-governador">
+            <a href="historia.html?slug=simao-jatene" aria-label="Ver história detalhada de Simão Jatene">
+              <img src="img/jatena1.png" alt="Foto de Simão Jatene" class="foto-governador">
+            </a>
+            <span class="periodo-badge">2003–2007 e 2011–2019</span>
+            <h3>Simão Jatene</h3>
+            <p>Ex-aluno do CEPC e governador do Pará em dois períodos.</p>
+            <a href="historia.html?slug=simao-jatene" class="link-card-detalhe">Ler história detalhada →</a>
+          </article>
+        </div>
+
+        <aside class="nota-historica" aria-label="Nota histórica">
+          <p><strong>Nota histórica:</strong> a lista acima reúne nomes identificados como ex-alunos em fontes consultadas. João Coelho da Gama e Abreu, Enéas Pinheiro e José Carneiro da Gama Malcher também aparecem em registros históricos ligados ao ginásio, mas na condição de professores, não de alunos; por isso não entram incluídos nesta seção de ex-estudantes.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="quiz" class="secao">
+      <div class="container container-estreito">
+        <div class="cabecalho-secao"><span class="etiqueta-secao">Atividade Interativa da Mostra</span><h2>Quiz: Quanto você sabe sobre o CEPC?</h2><p>Responda às perguntas e teste seus conhecimentos.</p></div>
         <div class="quiz-box" id="quiz-box" aria-live="polite">
-          <div class="quiz-topo">
-            <span id="quiz-progresso">Pergunta 1 de 5</span>
-            <span id="quiz-placar">Pontuação: 0</span>
-          </div>
-
+          <div class="quiz-topo"><span id="quiz-progresso">Pergunta 1 de 5</span><span id="quiz-placar">Pontuação: 0</span></div>
           <h3 id="quiz-pergunta" class="quiz-pergunta">Carregando pergunta...</h3>
-
           <div id="quiz-opcoes" class="quiz-opcoes"></div>
-
           <div id="quiz-feedback" class="quiz-feedback oculto"></div>
-
-          <div class="quiz-rodape">
-            <button type="button" id="btn-proxima" class="btn btn-primario oculto">Próxima Pergunta</button>
-          </div>
+          <div class="quiz-rodape"><button type="button" id="btn-proxima" class="btn btn-primario oculto">Próxima Pergunta</button></div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Rodapé -->
   <footer class="rodape">
     <div class="container flex-between rodape-conteudo">
-      <div>
-        <strong>Colégio Estadual Paes de Carvalho (CEPC / EETEPA)</strong>
-        <p>185 Anos de História • Praça Saldanha Marinho, Belém - Pará</p>
-      </div>
-      <div class="rodape-direita">
-        <p>VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável</p>
-        <p><small>Desenvolvido pela Turma do Curso Técnico em Informática • 2026</small></p>
-      </div>
+      <div><strong>Colégio Estadual Paes de Carvalho (CEPC / EETEPA)</strong><p>185 Anos de História • Belém - Pará</p></div>
+      <div class="rodape-direita"><p>VII Mostra de Tecnologia, Inclusão e Novos Negócios para um Mundo Sustentável</p><p><small>Desenvolvido pela Turma do Curso Técnico em Informática • 2026</small></p></div>
     </div>
   </footer>
-
-  <!-- Vinculando o arquivo JavaScript externo -->
   <script src="script.js"></script>
 </body>
 </html>
-
-      
-         
-        
-     
